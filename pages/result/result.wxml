@@ -1,0 +1,81 @@
+<!--pages/result/result.wxml-->
+<view class="result-page" style="--theme-color: {{typeColor}}">
+  <view class="result-header">
+    <view class="type-badge">你的依恋类型</view>
+    <text class="type-name">{{result.typeName}}</text>
+    <text class="type-subtitle">{{result.subtitle}}</text>
+  </view>
+
+  <view class="score-card card">
+    <text class="card-title">各维度得分</text>
+    <view class="score-bar-row">
+      <text class="label">焦虑型</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{scores.anxious * 2}}%;background:#F5A3A3"></view></view>
+      <text class="score-num">{{scores.anxious}}/50</text>
+    </view>
+    <view class="score-bar-row">
+      <text class="label">回避型</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{scores.avoidant * 2}}%;background:#8BB5C0"></view></view>
+      <text class="score-num">{{scores.avoidant}}/50</text>
+    </view>
+    <view class="score-bar-row">
+      <text class="label">安全型</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{scores.secure * 2}}%;background:#A3D0C0"></view></view>
+      <text class="score-num">{{scores.secure}}/50</text>
+    </view>
+  </view>
+
+  <view class="{{isUnlocked ? '' : 'blurred'}}">
+    <view class="card">
+      <text class="card-title">你的特征</text>
+      <view class="feature-list">
+        <view class="feature-item" wx:for="{{result.features}}" wx:key="index">
+          <text class="feature-dot">●</text>
+          <text class="feature-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <text class="card-title">恋爱中的常见模式</text>
+      <text class="desc-text">{{result.pattern}}</text>
+    </view>
+
+    <view class="card">
+      <text class="card-title">给你的建议</text>
+      <view class="advice-list">
+        <view class="advice-item" wx:for="{{result.advices}}" wx:key="index">
+          <text class="advice-num">{{index + 1}}.</text>
+          <text class="advice-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <text class="card-title">推荐阅读与练习</text>
+      <view class="recommend-list">
+        <view class="recommend-item" wx:for="{{result.recommendations}}" wx:key="index">
+          <text class="rec-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="unlock-overlay" wx:if="{{!isUnlocked}}">
+    <view class="unlock-card">
+      <text class="unlock-icon">🔒</text>
+      <text class="unlock-title">完整报告已生成</text>
+      <text class="unlock-desc">解锁查看详细解读与个性化建议</text>
+      <button class="btn-unlock" bindtap="unlockReport">解锁完整报告</button>
+    </view>
+  </view>
+
+  <view class="disclaimer">
+    <text>本测试结果仅供参考，不作为专业心理诊断依据。如有困扰，建议寻求专业心理咨询师帮助。</text>
+  </view>
+
+  <view class="bottom-btns">
+    <button class="btn-share" open-type="share">分享给好友</button>
+    <button class="btn-home" bindtap="goHome">回到首页</button>
+  </view>
+</view>

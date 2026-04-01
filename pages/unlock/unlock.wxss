@@ -1,0 +1,145 @@
+/* 解锁页样式 */
+page {
+  background: #FFF8F0;
+}
+
+.unlock-page {
+  padding: 24rpx;
+  padding-bottom: 60rpx;
+}
+
+.preview-card {
+  text-align: center;
+  padding: 60rpx 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 10rpx 28rpx;
+  background: rgba(245,163,163,0.1);
+  color: #F5A3A3;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.type-name {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+
+.blurred-content {
+  padding: 20rpx;
+}
+
+.blur-block {
+  height: 24rpx;
+  background: #e8e8e8;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+  filter: blur(4px);
+}
+
+.blur-block.short { width: 60%; margin: 0 auto 16rpx; }
+.blur-block.medium { width: 80%; margin: 0 auto 16rpx; }
+
+/* 解锁方式卡片 */
+.method-card {
+  padding: 40rpx 32rpx;
+}
+
+.method-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.method-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  background: #fafafa;
+  border-radius: 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.method-icon {
+  font-size: 48rpx;
+  margin-right: 24rpx;
+}
+
+.method-info { flex: 1; }
+
+.method-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.method-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.method-price { text-align: right; }
+
+.price {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #F5A3A3;
+}
+
+.price-tag {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 32rpx 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1rpx;
+  background: #e8e8e8;
+}
+
+.divider-text {
+  padding: 0 24rpx;
+  font-size: 24rpx;
+  color: #ccc;
+}
+
+.btn-invite {
+  width: 100%;
+  background: linear-gradient(135deg, #A3D0C0, #8BC0A8);
+  color: #fff;
+  border: none;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.disclaimer {
+  padding: 32rpx;
+  text-align: center;
+}
+
+.disclaimer text {
+  font-size: 22rpx;
+  color: #bbb;
+  line-height: 1.8;
+}

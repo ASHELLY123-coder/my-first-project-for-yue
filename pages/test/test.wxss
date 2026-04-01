@@ -1,0 +1,146 @@
+/* 答题页样式 */
+page {
+  background: #FFF8F0;
+  height: 100%;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 进度条 */
+.progress-section {
+  padding: 32rpx 40rpx;
+  background: #fff;
+}
+
+.progress-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F5A3A3, #A3D0C0);
+  border-radius: 6rpx;
+  transition: width 0.4s ease;
+}
+
+/* 题目区域 */
+.question-section {
+  flex: 1;
+  padding: 40rpx;
+}
+
+.question-card {
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 48rpx 32rpx;
+  box-shadow: 0 8rpx 40rpx rgba(245,163,163,0.1);
+}
+
+.question-number {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  background: linear-gradient(135deg, #F5A3A3, #E8A0A0);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.question-text {
+  font-size: 36rpx;
+  color: #333;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* 选项 */
+.options-section {
+  padding: 0 40rpx;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+  border: 3rpx solid #f0f0f0;
+  border-radius: 20rpx;
+  transition: all 0.3s ease;
+}
+
+.option-item.selected {
+  background: rgba(245,163,163,0.08);
+  border-color: #F5A3A3;
+}
+
+.option-circle {
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 50%;
+  font-size: 28rpx;
+  color: #999;
+  margin-right: 24rpx;
+  transition: all 0.3s ease;
+}
+
+.option-item.selected .option-circle {
+  background: linear-gradient(135deg, #F5A3A3, #E8A0A0);
+  color: #fff;
+}
+
+.option-label {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.option-item.selected .option-label {
+  color: #F5A3A3;
+  font-weight: 500;
+}
+
+/* 导航按钮 */
+.nav-section {
+  display: flex;
+  padding: 32rpx 40rpx 60rpx;
+  gap: 24rpx;
+}
+
+.nav-btn {
+  flex: 1;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border: none;
+}
+
+.prev-btn {
+  background: #fff;
+  color: #666;
+  border: 2rpx solid #e0e0e0;
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #F5A3A3, #E8A0A0);
+  color: #fff;
+  box-shadow: 0 6rpx 24rpx rgba(245,163,163,0.3);
+}

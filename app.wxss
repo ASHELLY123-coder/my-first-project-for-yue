@@ -1,0 +1,16 @@
+/* 全局样式 */
+page {
+  --primary: #F5A3A3;
+  --secondary: #A3D0C0;
+  --bg: #FFF8F0;
+  background: var(--bg);
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.container { min-height: 100vh; }
+.card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(245,163,163,0.1);
+}

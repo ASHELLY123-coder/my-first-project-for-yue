@@ -1,0 +1,45 @@
+<!--pages/profile/profile.wxml-->
+<view class="profile-page">
+  <view class="user-section">
+    <view class="avatar-wrap" wx:if="{{isLoggedIn && userInfo}}">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    </view>
+    <view class="avatar-wrap default-avatar" wx:else>
+      <text class="avatar-text">👤</text>
+    </view>
+    <view class="user-info">
+      <text class="nickname">{{isLoggedIn ? userInfo.nickName : '未登录'}}</text>
+      <text class="user-desc">{{isLoggedIn ? '点击查看我的测试记录' : '点击登录查看历史记录'}}</text>
+    </view>
+    <button class="btn-login" wx:if="{{!isLoggedIn}}" bindtap="login">微信登录</button>
+  </view>
+
+  <view class="section">
+    <text class="section-title">测试记录</text>
+    <view class="history-list" wx:if="{{history.length > 0}}">
+      <view class="history-item" wx:for="{{history}}" wx:key="timestamp" bindtap="viewDetail" data-type="{{item.typeKey}}">
+        <view class="history-left">
+          <text class="history-type">{{item.typeKey === 'anxious' ? '焦虑型' : item.typeKey === 'avoidant' ? '回避型' : item.typeKey === 'secure' ? '安全型' : '混合型'}}</text>
+          <text class="history-date">{{item.date}}</text>
+        </view>
+        <text class="history-arrow">›</text>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">还没有测试记录</text>
+      <text class="empty-hint">快去完成一次测试吧</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="menu-item" bindtap="goHelp">
+      <text>帮助与反馈</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="disclaimer">
+    <text>本测试结果仅供参考，不作为专业心理诊断依据。如有困扰，建议寻求专业心理咨询师帮助。</text>
+  </view>
+</view>
