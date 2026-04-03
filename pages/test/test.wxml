@@ -19,16 +19,15 @@
   <!-- 选项列表 -->
   <view class="options-section">
     <view
-      class="option-item {{answers[currentIndex] === option.score ? 'selected' : ''}}"
+      class="option-item {{answers[currentIndex] == item.score ? 'selected' : ''}}"
       wx:for="{{currentQuestion.options}}"
       wx:key="label"
       bindtap="selectOption"
-      data-score="{{option.score}}"
-      data-index="{{index}}"
+      data-score="{{item.score}}"
     >
       <view class="option-label">{{item.label}}</view>
       <view class="option-text">{{item.text}}</view>
-      <view class="option-check" wx:if="{{answers[currentIndex] === option.score}}">✓</view>
+      <view class="option-check" wx:if="{{answers[currentIndex] == item.score}}">✓</view>
     </view>
   </view>
 
