@@ -1,47 +1,43 @@
-const { results, supportChannels } = require('../../utils/results')
+const { results } = require('../../utils/results')
 
 Page({
   data: {
     typeKey: '',
-    result: null,
-    anxietyScore: 0,
-    avoidanceScore: 0,
-    typeColor: '#F5A3A3',
-    supportChannels: []
+    resultData: null,
+    anxietyBarWidth: 0,
+    avoidanceBarWidth: 0,
+    anxietyColor: '#E67E22',
+    avoidanceColor: '#3498DB'
   },
 
   onLoad(options) {
     const typeKey = options.type || 'secure'
     const saved = wx.getStorageSync('lastTestResult')
+    const r = results[typeKey] || results.secure
 
-    if (!saved) {
-      wx.redirectTo({ url: '/pages/index/index' })
-      return
-    }
-
-    const result = results[typeKey] || results.secure
-    const anxietyScore = saved.scores?.anxious || 0
-    const avoidanceScore = saved.scores?.avoidant || 0
+    const anxietyBarWidth = Math.min(Math.max((saved.anxiousScore - 12) / 36 * 100, 0), 100)
+    const avoidanceBarWidth = Math.min(Math.max((saved.avoidantScore - 12) / 36 * 100, 0), 100)
 
     this.setData({
       typeKey,
-      result,
-      anxietyScore,
-      avoidanceScore,
-      typeColor: result.color,
-      supportChannels
+      resultData: r,
+      anxietyBarWidth: anxietyBarWidth,
+      avoidanceBarWidth: avoidanceBarWidth,
+      anxiousScore: saved.anxiousScore,
+      avoidantScore: saved.avoidantScore,
+      anxietyLevel: saved.anxietyLevel,
+      avoidanceLevel: saved.avoidanceLevel
     })
   },
 
   onShareAppMessage() {
-    const r = this.data.result
     return {
-      title: '我的依恋风格是【' + r.typeName + '】' + r.emoji + '，你也来测测吧！',
+      title: '我的依恋类型是' + this.data.resultData.typeName + '，你也来测测吧！',
       path: '/pages/index/index'
     }
   },
 
   goHome() {
-    wx.switchTab({ url: '/pages/index/index' })
+    wx.redirectTo({ url: '/pages/index/index' })
   }
 })

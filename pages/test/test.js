@@ -1,5 +1,15 @@
 const { questions } = require('../../utils/questions')
-const { scoring } = require('../../utils/scoring')
+const { calculateResult } = require('../../utils/scoring')
+
+// Fisher-Yates 洗牌算法打乱题目顺序
+function shuffle(arr) {
+  const a = arr.slice()
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
 
 Page({
   data: {
@@ -12,9 +22,10 @@ Page({
   },
 
   onLoad() {
+    const shuffled = shuffle(questions)
     this.setData({
-      questions: questions,
-      currentQuestion: questions[0],
+      questions: shuffled,
+      currentQuestion: shuffled[0],
       progressPercent: Math.round((1 / 24) * 100)
     })
   },
@@ -58,10 +69,10 @@ Page({
   submitTest() {
     const answersObj = {}
     for (let i = 0; i < 24; i++) {
-      answersObj[i + 1] = this.data.answers[i] || 0
+      answersObj[this.data.questions[i].id] = this.data.answers[i] || 0
     }
 
-    const result = scoring.calculate(answersObj)
+    const result = calculateResult(answersObj)
 
     wx.setStorageSync('lastTestResult', result)
     wx.setStorageSync('lastTestAnswers', answersObj)

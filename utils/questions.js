@@ -1,18 +1,18 @@
 const questions = [
   {
     id: 1,
-    text: '当伴侣没有及时回复你的消息（超过3小时），你的第一反应通常是？',
+    text: '【分离焦虑】当伴侣没有及时回复你的消息（超过3小时），你的第一反应通常是？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '完全没在意，该干嘛干嘛', score: 1 },
       { label: 'B', text: '稍微有点好奇，但很快就去忙别的了', score: 2 },
       { label: 'C', text: '会忍不住想TA是不是厌烦我了，并反复看手机', score: 3 },
-      { label: 'D', text: '感到恐慌，甚至开始脑补TA是不是出事了或出轨了的剧情', score: 4 }
+      { label: 'D', text: '极度恐慌，甚至开始脑补TA是不是出事了或出轨了的剧情', score: 4 }
     ]
   },
   {
     id: 2,
-    text: '在一段关系中，如果对方的语气稍微冷淡了一点，你会？',
+    text: '【过度解读】在一段关系中，如果对方的语气稍微冷淡了一点，你会？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '觉得TA可能只是累了，不会多想', score: 1 },
@@ -23,7 +23,7 @@ const questions = [
   },
   {
     id: 3,
-    text: '你是否经常需要伴侣反复证明TA是爱你的？',
+    text: '【确认需求】你是否经常需要伴侣反复证明TA是爱你的？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '几乎不需要，我很有安全感', score: 1 },
@@ -34,7 +34,7 @@ const questions = [
   },
   {
     id: 4,
-    text: '当你刚开始喜欢一个人时，你内心深处的声音更像是？',
+    text: '【理想化与恐惧】当你刚开始喜欢一个人时，你内心深处的声音更像是？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '太好了，期待和TA自然发展', score: 1 },
@@ -45,7 +45,7 @@ const questions = [
   },
   {
     id: 5,
-    text: '当伴侣需要独处或和朋友出去玩时，你会感到？',
+    text: '【独处不安】当伴侣需要独处或和朋友出去玩时，你会感到？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '很开心，我也需要个人空间', score: 1 },
@@ -56,7 +56,7 @@ const questions = [
   },
   {
     id: 6,
-    text: '你的情绪在关系中是否经常因为对方的一个小举动而剧烈波动？',
+    text: '【情绪过山车】你的情绪在关系中是否经常因为对方的一个小举动而剧烈波动？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '我的情绪一直很稳定', score: 1 },
@@ -67,18 +67,18 @@ const questions = [
   },
   {
     id: 7,
-    text: '在感情不顺的时候，你最容易产生的想法是？',
+    text: '【自我价值怀疑】在感情不顺的时候，你最容易产生的想法是？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '我们需要沟通解决问题', score: 1 },
-      { label: 'B', text: '是不是我不够好或不值得被爱', score: 2 },
-      { label: 'C', text: '是不是对方有问题', score: 3 },
+      { label: 'B', text: '是不是我不够好或不值得被爱？', score: 2 },
+      { label: 'C', text: '是不是对方有问题？', score: 3 },
       { label: 'D', text: '也许我们不合适，好聚好散', score: 4 }
     ]
   },
   {
     id: 8,
-    text: '在社交场合中，你是否会不自觉地寻找伴侣不爱你的细节？',
+    text: '【过度警觉】在社交场合中，你是否会不自觉地寻找伴侣不爱你的细节？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '从不，我很信任对方', score: 1 },
@@ -89,7 +89,7 @@ const questions = [
   },
   {
     id: 9,
-    text: '当发生争吵时，你更倾向于？',
+    text: '【冲突反应】当发生争吵时，你更倾向于？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '冷静沟通，解决问题', score: 1 },
@@ -100,7 +100,7 @@ const questions = [
   },
   {
     id: 10,
-    text: '你对伴侣的过去或异性朋友通常持什么态度？',
+    text: '【独占欲】你对伴侣的过去或异性朋友通常持什么态度？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '尊重过去，不介意正常社交', score: 1 },
@@ -111,7 +111,7 @@ const questions = [
   },
   {
     id: 11,
-    text: '如果不做任何努力，你觉得这段关系能维持多久？',
+    text: '【被抛弃预判】如果不做任何努力，你觉得这段关系能维持多久？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '很久，我很有信心', score: 1 },
@@ -122,7 +122,7 @@ const questions = [
   },
   {
     id: 12,
-    text: '当你感到在关系中不安时，身体会有什么反应？',
+    text: '【身体反应】当你感到在关系中不安时，身体会有什么反应？',
     dimension: 'anxious',
     options: [
       { label: 'A', text: '没什么特别反应，该吃吃该睡睡', score: 1 },
@@ -133,7 +133,7 @@ const questions = [
   },
   {
     id: 13,
-    text: '当遇到棘手难题时，你的第一反应更倾向于：',
+    text: '【过度独立】当遇到棘手难题时，你的第一反应更倾向于：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '立刻自己查资料解决，不到万不得已不求助', score: 4 },
@@ -144,18 +144,18 @@ const questions = [
   },
   {
     id: 14,
-    text: '如果有人突然对你表达过度的热情或亲密，你内心最真实的声音是：',
+    text: '【热情回避】如果有人突然对你表达过度的热情或亲密，你内心最真实的声音是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '有点不自在，想悄悄拉开点距离', score: 4 },
       { label: 'B', text: '还好，但别太黏人', score: 3 },
       { label: 'C', text: '有点开心，但也会担心后续麻烦', score: 2 },
-      { label: 'D', text: '很享受，希望关系能更进一步', score: 1 }
+      { label: 'D', text: '很享受，希望关系能更近一步', score: 1 }
     ]
   },
   {
     id: 15,
-    text: '在需要直接表达「我需要你」或「我很在乎」时，你通常会：',
+    text: '【情感抑制】在需要直接表达我需要你或我很在乎时，你通常会：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '话到嘴边又咽回去，改用行动暗示', score: 4 },
@@ -166,7 +166,7 @@ const questions = [
   },
   {
     id: 16,
-    text: '周末突然空出一整天完全自由的时间，你最放松的状态是：',
+    text: '【安全距离】周末突然空出一整天完全自由的时间，你最放松的状态是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '独自做喜欢的事（看书/游戏/发呆），完全不被打扰', score: 4 },
@@ -177,7 +177,7 @@ const questions = [
   },
   {
     id: 17,
-    text: '想到「一段理想的关系」，你脑海中浮现的画面更像是：',
+    text: '【独立模式】想到一段理想的关系，你脑海中浮现的画面更像是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '两个独立星球，偶尔友好信号互通，但各自运行', score: 4 },
@@ -188,7 +188,7 @@ const questions = [
   },
   {
     id: 18,
-    text: '当伴侣试图深入讨论彼此的感受或矛盾时，你的身体反应往往是：',
+    text: '【情感回避】当伴侣试图深入讨论彼此的感受或矛盾时，你的身体反应往往是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '肌肉紧绷，想转移话题或暂时离开现场', score: 4 },
@@ -199,7 +199,7 @@ const questions = [
   },
   {
     id: 19,
-    text: '如果伴侣频繁需要你提供情绪价值（如安慰、肯定），你内心的真实感受是：',
+    text: '【抗拒卷入】如果伴侣频繁需要你提供情绪价值（如安慰、肯定），你内心的真实感受是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '压力很大，觉得自己被消耗了', score: 4 },
@@ -210,7 +210,7 @@ const questions = [
   },
   {
     id: 20,
-    text: '当感情和个人目标（工作/爱好）冲突时，你的优先级通常是：',
+    text: '【独立优先】当感情和个人目标（工作/爱好）冲突时，你的优先级通常是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '毫不犹豫选目标，感情可以稍后处理', score: 4 },
@@ -221,7 +221,7 @@ const questions = [
   },
   {
     id: 21,
-    text: '对于突如其来的拥抱或牵手，你的第一反应更像是：',
+    text: '【身体回避】对于突如其来的拥抱或牵手，你的第一反应更像是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '身体瞬间僵硬，本能想后退半步', score: 4 },
@@ -232,7 +232,7 @@ const questions = [
   },
   {
     id: 22,
-    text: '深夜独自面对困难时，你最常对自己说的一句话是：',
+    text: '【自我依靠】深夜独自面对困难时，你最常对自己说的一句话是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '没事，我自己能搞定，不需要麻烦别人', score: 4 },
@@ -243,7 +243,7 @@ const questions = [
   },
   {
     id: 23,
-    text: '当关系推进到需要明确承诺（如同居、结婚）的阶段，你的感受更接近：',
+    text: '【承诺恐惧】当关系推进到需要明确承诺（如同居、结婚）的阶段，你的感受更接近：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '焦虑感剧增，想找借口拖延或退缩', score: 4 },
@@ -254,7 +254,7 @@ const questions = [
   },
   {
     id: 24,
-    text: '当伴侣希望你分享内心深处的脆弱或伤痛时，你通常的做法是：',
+    text: '【情感保留】当伴侣希望你分享内心深处的脆弱或伤痛时，你通常的做法是：',
     dimension: 'avoidant',
     options: [
       { label: 'A', text: '直接转移话题或找个理由离开，不想谈这些', score: 4 },
