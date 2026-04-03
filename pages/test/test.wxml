@@ -4,8 +4,6 @@
   <view class="progress-section">
     <view class="progress-info">
       <text class="progress-text">第 {{currentIndex + 1}} / 24 题</text>
-      <text class="progress-tip" wx:if="{{currentIndex < 12}}">焦虑维度</text>
-      <text class="progress-tip avoidant" wx:else>回避维度</text>
     </view>
     <view class="progress-bar">
       <view class="progress-fill" style="width: {{progressPercent}}%"></view>
@@ -21,15 +19,16 @@
   <!-- 选项列表 -->
   <view class="options-section">
     <view
-      class="option-item {{selectedOption === option.score ? 'selected' : ''}}"
+      class="option-item {{answers[currentIndex] === option.score ? 'selected' : ''}}"
       wx:for="{{currentQuestion.options}}"
       wx:key="label"
       bindtap="selectOption"
       data-score="{{option.score}}"
+      data-index="{{index}}"
     >
-      <view class="option-label {{selectedOption === option.score ? 'active' : ''}}">{{item.label}}</view>
+      <view class="option-label">{{item.label}}</view>
       <view class="option-text">{{item.text}}</view>
-      <view class="option-check" wx:if="{{selectedOption === option.score}}">✓</view>
+      <view class="option-check" wx:if="{{answers[currentIndex] === option.score}}">✓</view>
     </view>
   </view>
 
@@ -43,6 +42,6 @@
 
   <!-- 底部提示 -->
   <view class="test-tip">
-    <text>请根据大多数时候的感受作答，没有对错之分</text>
+    <text>请根据大多数时候的感受作答</text>
   </view>
 </view>

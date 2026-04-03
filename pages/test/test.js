@@ -1,8 +1,6 @@
 const { questions } = require('../../utils/questions')
 const { scoring } = require('../../utils/scoring')
 
-const instruction = '请根据你大多数时候的感受作答，没有对错之分。'
-
 Page({
   data: {
     totalQuestions: 24,
@@ -10,18 +8,13 @@ Page({
     currentQuestion: null,
     questions: [],
     answers: {},
-    progress: 0,
-    progressPercent: 0,
-    selectedOption: -1,
-    instruction: instruction
+    progressPercent: 0
   },
 
   onLoad() {
-    const q = questions
     this.setData({
-      questions: q,
-      currentQuestion: q[0],
-      progress: 1,
+      questions: questions,
+      currentQuestion: questions[0],
       progressPercent: Math.round((1 / 24) * 100)
     })
   },
@@ -31,7 +24,7 @@ Page({
     const idx = this.data.currentIndex
     const answers = Object.assign({}, this.data.answers)
     answers[idx] = score
-    this.setData({ answers: answers, selectedOption: score })
+    this.setData({ answers: answers })
   },
 
   prevQuestion() {
@@ -40,9 +33,7 @@ Page({
       this.setData({
         currentIndex: idx,
         currentQuestion: this.data.questions[idx],
-        progress: idx + 1,
-        progressPercent: Math.round(((idx + 1) / 24) * 100),
-        selectedOption: this.data.answers[idx] !== undefined ? this.data.answers[idx] : -1
+        progressPercent: Math.round(((idx + 1) / 24) * 100)
       })
     }
   },
@@ -57,9 +48,7 @@ Page({
       this.setData({
         currentIndex: idx,
         currentQuestion: this.data.questions[idx],
-        progress: idx + 1,
-        progressPercent: Math.round(((idx + 1) / 24) * 100),
-        selectedOption: this.data.answers[idx] !== undefined ? this.data.answers[idx] : -1
+        progressPercent: Math.round(((idx + 1) / 24) * 100)
       })
     } else {
       this.submitTest()
