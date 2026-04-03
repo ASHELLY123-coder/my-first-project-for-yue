@@ -1,44 +1,62 @@
-const { results } = require('../../utils/results')
+const { results, supportChannels } = require('../../utils/results')
 
 Page({
   data: {
     typeKey: '',
     result: null,
-    scores: null,
-    typeColor: '',
-    isUnlocked: true
+    anxietyNorm: 0,
+    avoidanceNorm: 0,
+    anxietyScore: 0,
+    avoidanceScore: 0,
+    typeColor: '#F5A3A3',
+    supportChannels: supportChannels,
+    chartData: null,
+    quadrantInfo: null
   },
 
   onLoad(options) {
-    const typeKey = options.type || 'mixed'
+    const typeKey = options.type || 'secure'
     const saved = wx.getStorageSync('lastTestResult')
-    const result = results[typeKey] || results.mixed
-    const scores = saved ? saved.scores : { anxious: 0, avoidant: 0, secure: 0 }
-    
-    const history = wx.getStorageSync('testHistory') || []
-    const isUnlocked = history.length < 30
-    
+
+    if (!saved) {
+      wx.redirectTo({ url: '/pages/index/index' })
+      return
+    }
+
+    const result = results[typeKey] || results.secure
+    const anxietyNorm = saved.anxietyNorm || 50
+    const avoidanceNorm = saved.avoidanceNorm || 50
+
     this.setData({
       typeKey,
       result,
-      scores,
+      anxietyNorm,
+      avoidanceNorm,
+      anxietyScore: saved.anxiousScore || 0,
+      avoidanceScore: saved.avoidantScore || 0,
       typeColor: result.color,
-      isUnlocked
+      chartData: { x: avoidanceNorm, y: anxietyNorm }
     })
   },
 
   onShareAppMessage() {
+    const r = this.data.result
     return {
-      title: '我的恋爱依恋类型是' + (this.data.result ? this.data.result.typeName : '混合型') + '，你也来测测吧！',
+      title: '我的依恋风格是【' + r.typeName + '】' + r.emoji + '，你也来测测吧！',
       path: '/pages/index/index'
     }
   },
 
-  unlockReport() {
-    wx.navigateTo({ url: '/pages/unlock/unlock?type=' + this.data.typeKey })
-  },
-
   goHome() {
     wx.switchTab({ url: '/pages/index/index' })
+  },
+
+  callHotline(e) {
+    const phone = e.currentTarget.dataset.phone
+    if (phone) {
+      wx.makePhoneCall({ phoneNumber: phone })
+    } else {
+      wx.showToast({ title: '请搜索：' + e.currentTarget.dataset.name, icon: 'none' })
+    }
   }
 })

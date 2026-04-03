@@ -7,7 +7,7 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '测测你的恋爱依恋类型',
+      title: '测测你的依恋风格 | 亲密关系探索',
       path: '/pages/index/index'
     }
   }

@@ -1,81 +1,145 @@
-<!--pages/result/result.wxml-->
-<view class="result-page" style="--theme-color: {{typeColor}}">
-  <view class="result-header">
-    <view class="type-badge">你的依恋类型</view>
-    <text class="type-name">{{result.typeName}}</text>
-    <text class="type-subtitle">{{result.subtitle}}</text>
+<!-- pages/result/result.wxml -->
+<scroll-view scroll-y class="result-page" style="background: #FFF8F0;">
+  <!-- 顶部结果展示 -->
+  <view class="result-header" style="background: linear-gradient(180deg, {{typeColor}} 0%, #FFF8F0 100%);">
+    <view class="result-badge">
+      <text class="badge-text">你的依恋风格</text>
+    </view>
+    <view class="type-emoji">{{result.emoji}}</view>
+    <view class="type-name" style="color: #fff;">{{result.typeName}}</view>
+    <view class="type-subtitle">{{result.subtitle}}</view>
   </view>
 
-  <view class="score-card card">
-    <text class="card-title">各维度得分</text>
-    <view class="score-bar-row">
-      <text class="label">焦虑型</text>
-      <view class="bar-track"><view class="bar-fill" style="width:{{scores.anxious * 2}}%;background:#F5A3A3"></view></view>
-      <text class="score-num">{{scores.anxious}}/50</text>
-    </view>
-    <view class="score-bar-row">
-      <text class="label">回避型</text>
-      <view class="bar-track"><view class="bar-fill" style="width:{{scores.avoidant * 2}}%;background:#8BB5C0"></view></view>
-      <text class="score-num">{{scores.avoidant}}/50</text>
-    </view>
-    <view class="score-bar-row">
-      <text class="label">安全型</text>
-      <view class="bar-track"><view class="bar-fill" style="width:{{scores.secure * 2}}%;background:#A3D0C0"></view></view>
-      <text class="score-num">{{scores.secure}}/50</text>
-    </view>
-  </view>
-
-  <view class="{{isUnlocked ? '' : 'blurred'}}">
-    <view class="card">
-      <text class="card-title">你的特征</text>
-      <view class="feature-list">
-        <view class="feature-item" wx:for="{{result.features}}" wx:key="index">
-          <text class="feature-dot">●</text>
-          <text class="feature-text">{{item}}</text>
+  <!-- 二维坐标图 -->
+  <view class="card chart-card">
+    <view class="card-title">二维坐标图</view>
+    <view class="chart-container">
+      <!-- 坐标系背景 -->
+      <view class="chart-bg">
+        <!-- 四象限标签 -->
+        <view class="quadrant-label top-left" style="color: #2ECC71;">安全型</view>
+        <view class="quadrant-label top-right" style="color: #E74C3C;">恐惧型</view>
+        <view class="quadrant-label bottom-left" style="color: #2ECC71; opacity: 0.6;">安全型</view>
+        <view class="quadrant-label bottom-right" style="color: #3498DB;">独立型</view>
+        
+        <!-- 象限分割线 -->
+        <view class="axis-line horizontal" style="top: 50%;"></view>
+        <view class="axis-line vertical" style="left: 50%;"></view>
+        
+        <!-- 坐标轴标签 -->
+        <view class="axis-label left-label">焦虑↑</view>
+        <view class="axis-label bottom-label">→ 回避</view>
+        
+        <!-- 用户位置点 -->
+        <view class="user-dot" style="left: {{chartData.x}}%; top: {{100 - chartData.y}}%;">
+          <view class="dot-inner"></view>
+          <view class="dot-pulse"></view>
+        </view>
+      </view>
+      <!-- 图例 -->
+      <view class="chart-legend">
+        <view class="legend-item">
+          <view class="legend-dot" style="background: #2ECC71;"></view>
+          <text>低焦虑 + 低回避 = 安全型</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot" style="background: #E67E22;"></view>
+          <text>高焦虑 + 低回避 = 渴望型</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot" style="background: #3498DB;"></view>
+          <text>低焦虑 + 高回避 = 独立型</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot" style="background: #E74C3C;"></view>
+          <text>高焦虑 + 高回避 = 恐惧型</text>
         </view>
       </view>
     </view>
+  </view>
 
-    <view class="card">
-      <text class="card-title">恋爱中的常见模式</text>
-      <text class="desc-text">{{result.pattern}}</text>
-    </view>
-
-    <view class="card">
-      <text class="card-title">给你的建议</text>
-      <view class="advice-list">
-        <view class="advice-item" wx:for="{{result.advices}}" wx:key="index">
-          <text class="advice-num">{{index + 1}}.</text>
-          <text class="advice-text">{{item}}</text>
-        </view>
+  <!-- 分数展示 -->
+  <view class="card score-card">
+    <view class="card-title">详细分数</view>
+    <view class="score-row">
+      <view class="score-item">
+        <view class="score-label">焦虑得分</view>
+        <view class="score-value" style="color: #E67E22;">{{anxietyScore}}</view>
+        <view class="score-max">/ 48</view>
+      </view>
+      <view class="score-divider"></view>
+      <view class="score-item">
+        <view class="score-label">回避得分</view>
+        <view class="score-value" style="color: #3498DB;">{{avoidanceScore}}</view>
+        <view class="score-max">/ 48</view>
       </view>
     </view>
+    <view class="score-note">
+      <text>阈值说明：得分 > 30 为高倾向，≤ 30 为低倾向</text>
+    </view>
+  </view>
 
-    <view class="card">
-      <text class="card-title">推荐阅读与练习</text>
-      <view class="recommend-list">
-        <view class="recommend-item" wx:for="{{result.recommendations}}" wx:key="index">
-          <text class="rec-text">{{item}}</text>
-        </view>
+  <!-- 特征描述 -->
+  <view class="card">
+    <view class="card-title">特征解读</view>
+    <view class="feature-item" wx:for="{{result.features}}" wx:key="index">
+      <text class="feature-dot">•</text>
+      <text class="feature-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 核心描述 -->
+  <view class="card desc-card" style="border-left: 6rpx solid {{typeColor}};">
+    <view class="desc-text">{{result.description}}</view>
+  </view>
+
+  <!-- 暖心建议 -->
+  <view class="card">
+    <view class="card-title">暖心建议</view>
+    <view class="advice-item">
+      <text class="advice-text">{{result.advice}}</text>
+    </view>
+  </view>
+
+  <!-- 行动提示 -->
+  <view class="card">
+    <view class="card-title">一些小练习</view>
+    <view class="tip-item" wx:for="{{result.tips}}" wx:key="index">
+      <view class="tip-num">{{index + 1}}</view>
+      <text class="tip-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 伦理声明 & 隐私 -->
+  <view class="card ethics-card">
+    <view class="ethics-title">⚠️ 免责声明</view>
+    <view class="ethics-text">本测评仅用于自我认知探索，不构成临床诊断或专业建议。依恋倾向是关系模式的一种，无优劣之分。如感到持续痛苦或需要深度帮助，请咨询专业心理咨询师。</view>
+    <view class="ethics-title" style="margin-top: 24rpx;">🔒 隐私说明</view>
+    <view class="ethics-text">您的测试结果仅保存在本地设备中，不会上传至服务器。</view>
+  </view>
+
+  <!-- 心理支持渠道 -->
+  <view class="card support-card">
+    <view class="card-title">📞 心理支持渠道</view>
+    <view class="support-item" wx:for="{{supportChannels}}" wx:key="name">
+      <view class="support-info">
+        <text class="support-name">{{item.name}}</text>
+        <text class="support-desc">{{item.desc}}</text>
+      </view>
+      <view class="support-action" wx:if="{{item.phone}}" bindtap="callHotline" data-phone="{{item.phone}}">
+        <text>拨打</text>
+      </view>
+      <view class="support-action" wx:else bindtap="callHotline" data-name="{{item.name}}" data-phone="">
+        <text>搜索</text>
       </view>
     </view>
   </view>
 
-  <view class="unlock-overlay" wx:if="{{!isUnlocked}}">
-    <view class="unlock-card">
-      <text class="unlock-icon">🔒</text>
-      <text class="unlock-title">完整报告已生成</text>
-      <text class="unlock-desc">解锁查看详细解读与个性化建议</text>
-      <button class="btn-unlock" bindtap="unlockReport">解锁完整报告</button>
-    </view>
-  </view>
-
-  <view class="disclaimer">
-    <text>本测试结果仅供参考，不作为专业心理诊断依据。如有困扰，建议寻求专业心理咨询师帮助。</text>
-  </view>
-
+  <!-- 分享 & 返回 -->
   <view class="bottom-btns">
-    <button class="btn-share" open-type="share">分享给好友</button>
-    <button class="btn-home" bindtap="goHome">回到首页</button>
+    <button class="btn-share" open-type="share">分享给朋友</button>
+    <button class="btn-home" bindtap="goHome">再做一次</button>
   </view>
-</view>
+
+  <view class="page-bottom"></view>
+</scroll-view>

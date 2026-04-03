@@ -1,36 +1,66 @@
-<!-- pages/index/index.wxml -->
-<view class="container">
-  <view class="header">
-    <view class="heart-icon">💗</view>
-    <view class="header-title">恋爱依恋类型测试</view>
-    <view class="header-subtitle">探索亲密关系中的自己</view>
-  </view>
-  
-  <view class="main-content">
-    <view class="welcome-card">
-      <view class="welcome-title">了解你的依恋类型</view>
-      <view class="welcome-desc">依恋类型决定了我们在亲密关系中的行为模式，了解它能帮助你更好地经营感情</view>
-      
-      <view class="features">
-        <view class="feature-item">
-          <view class="feature-icon">📝</view>
-          <view class="feature-text">30道题目</view>
-        </view>
-        <view class="feature-item">
-          <view class="feature-icon">⏱️</view>
-          <view class="feature-text">约5分钟</view>
-        </view>
-        <view class="feature-item">
-          <view class="feature-icon">💡</view>
-          <view class="feature-text">自我探索</view>
-        </view>
-      </view>
-      
-      <button class="start-btn" bindtap="startTest">开始测试</button>
+<view class="index-page">
+  <!-- 顶部背景 -->
+  <view class="top-section">
+    <view class="top-gradient">
+      <view class="heart-icon">💗</view>
+      <view class="main-title">亲密关系依恋风格测评</view>
+      <view class="main-subtitle">探索你在关系中的情绪模式与舒适区边界</view>
     </view>
   </view>
-  
-  <view class="disclaimer">
-    <text>本测试仅供娱乐参考，不作为心理诊断依据。\n如有困扰，建议寻求专业心理咨询师帮助。</text>
+
+  <!-- 内容区 -->
+  <view class="content-section">
+    <!-- 测评说明卡片 -->
+    <view class="intro-card">
+      <view class="intro-title">测评说明</view>
+      <view class="intro-text">本测评共 24 道题，分为两个维度：</view>
+      <view class="dimension-box">
+        <view class="dim-item anxiety">
+          <text class="dim-emoji">😰</text>
+          <text class="dim-name">焦虑维度</text>
+          <text class="dim-count">12 题</text>
+        </view>
+        <view class="dim-sep"></view>
+        <view class="dim-item avoidance">
+          <text class="dim-emoji">😐</text>
+          <text class="dim-name">回避维度</text>
+          <text class="dim-count">12 题</text>
+        </view>
+      </view>
+      <view class="intro-tip">
+        <text>💡 请根据你大多数时候的感受作答，没有对错之分</text>
+      </view>
+    </view>
+
+    <!-- 测评特点 -->
+    <view class="features-row">
+      <view class="feature-badge">
+        <text class="badge-num">24</text>
+        <text class="badge-text">道题目</text>
+      </view>
+      <view class="feature-badge">
+        <text class="badge-num">~5</text>
+        <text class="badge-text">分钟</text>
+      </view>
+      <view class="feature-badge">
+        <text class="badge-num">4</text>
+        <text class="badge-text">种类型</text>
+      </view>
+    </view>
+
+    <!-- 警示说明 -->
+    <view class="warning-card">
+      <view class="warning-title">⚠️ 重要提示</view>
+      <view class="warning-text">本测评采用轻度迫选设计（没有中间选项），可能会放大你的倾向，请结合自我感受综合判断。</view>
+      <view class="warning-text" style="margin-top: 12rpx;">结果仅供自我觉察参考，不构成临床诊断。</view>
+    </view>
+
+    <!-- 开始按钮 -->
+    <button class="start-btn" bindtap="startTest">开始测评</button>
+
+    <!-- 免责声明 -->
+    <view class="disclaimer">
+      <text>本测评仅用于自我认知探索，不构成专业心理诊断</text>
+    </view>
   </view>
 </view>

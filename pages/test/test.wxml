@@ -1,42 +1,54 @@
 <!-- pages/test/test.wxml -->
-<view class="container">
+<view class="test-page">
+  <!-- 顶部进度 -->
   <view class="progress-section">
-    <view class="progress-text">{{currentIndex + 1}} / 30</view>
+    <view class="progress-info">
+      <text class="progress-text">第 {{currentIndex + 1}} / 24 题</text>
+      <text class="progress-tip">焦虑维度</text>
+    </view>
     <view class="progress-bar">
-      <view class="progress-fill" style="width: {{((currentIndex + 1) / 30 * 100) + '%'}}"></view>
+      <view class="progress-fill" style="width: {{progressPercent}}%"></view>
     </view>
   </view>
 
-  <view class="question-section">
-    <view class="question-number">第 {{currentIndex + 1}} 题</view>
+  <!-- 维度标签 -->
+  <view class="dimension-tag" wx:if="{{currentIndex < 12}}">
+    <text>第一部分：焦虑依恋维度</text>
+  </view>
+  <view class="dimension-tag avoidant" wx:else>
+    <text>第二部分：回避依恋维度</text>
+  </view>
+
+  <!-- 题目内容 -->
+  <view class="question-card">
+    <view class="question-number">题 {{currentIndex + 1}}</view>
     <view class="question-text">{{currentQuestion.text}}</view>
   </view>
 
+  <!-- 选项列表 -->
   <view class="options-section">
-    <view class="option-item {{selectedOption === 1 ? 'selected' : ''}}" data-score="1" bindtap="selectOption">
-      <view class="option-circle">1</view>
-      <view class="option-label">完全不同意</view>
-    </view>
-    <view class="option-item {{selectedOption === 2 ? 'selected' : ''}}" data-score="2" bindtap="selectOption">
-      <view class="option-circle">2</view>
-      <view class="option-label">不同意</view>
-    </view>
-    <view class="option-item {{selectedOption === 3 ? 'selected' : ''}}" data-score="3" bindtap="selectOption">
-      <view class="option-circle">3</view>
-      <view class="option-label">中立</view>
-    </view>
-    <view class="option-item {{selectedOption === 4 ? 'selected' : ''}}" data-score="4" bindtap="selectOption">
-      <view class="option-circle">4</view>
-      <view class="option-label">同意</view>
-    </view>
-    <view class="option-item {{selectedOption === 5 ? 'selected' : ''}}" data-score="5" bindtap="selectOption">
-      <view class="option-circle">5</view>
-      <view class="option-label">完全同意</view>
+    <view
+      class="option-item {{selectedOption === option.score ? 'selected' : ''}}"
+      wx:for="{{currentQuestion.options}}"
+      wx:key="label"
+      bindtap="selectOption"
+      data-score="{{option.score}}"
+    >
+      <view class="option-label">{{item.label}}</view>
+      <view class="option-text">{{item.text}}</view>
     </view>
   </view>
 
+  <!-- 导航按钮 -->
   <view class="nav-section">
-    <button class="nav-btn prev-btn" bindtap="prevQuestion" disabled="{{currentIndex === 0}}">上一题</button>
-    <button class="nav-btn next-btn" bindtap="nextQuestion">{{currentIndex === 29 ? '查看结果' : '下一题'}}</button>
+    <button class="nav-btn prev-btn" bindtap="prevQuestion" wx:if="{{currentIndex > 0}}">上一题</button>
+    <button class="nav-btn {{answers[currentIndex] !== undefined ? 'next-btn' : 'next-btn disabled'}}" bindtap="nextQuestion">
+      {{currentIndex === 23 ? '查看结果' : '下一题'}}
+    </button>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="test-tip">
+    <text>请根据大多数时候的感受作答，没有对错之分</text>
   </view>
 </view>
