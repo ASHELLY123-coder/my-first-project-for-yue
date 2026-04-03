@@ -15,54 +15,23 @@
 
     <!-- 你是怎样的 -->
     <view class="desc-section">
-      <view class="section-title">📝 你是怎样的</view>
+      <view class="section-title">你是怎样的</view>
       <view class="desc-text">{{resultData.description}}</view>
-    </view>
-
-    <!-- 内心独白 -->
-    <view class="monologue-section">
-      <view class="monologue-label">内心独白</view>
-      <view class="monologue-text">“{{resultData.innerMonologue}}”</view>
-    </view>
-
-    <!-- 分数条 -->
-    <view class="score-section">
-      <view class="score-title">📊 测评结果</view>
-      <view class="score-item">
-        <view class="score-label">
-          <text class="score-name">焦虑倾向</text>
-          <text class="score-value">{{anxiousScore}}分</text>
-        </view>
-        <view class="score-bar-bg">
-          <view class="score-bar" style="width: {{anxietyBarWidth}}%; background: #E67E22"></view>
-        </view>
-        <view class="score-level">等级：{{anxietyLevel}}</view>
-      </view>
-      <view class="score-item">
-        <view class="score-label">
-          <text class="score-name">回避倾向</text>
-          <text class="score-value">{{avoidantScore}}分</text>
-        </view>
-        <view class="score-bar-bg">
-          <view class="score-bar" style="width: {{avoidanceBarWidth}}%; background: #3498DB"></view>
-        </view>
-        <view class="score-level">等级：{{avoidanceLevel}}</view>
-      </view>
     </view>
 
     <!-- 暖心建议 -->
     <view class="advice-section">
-      <view class="section-title">💡 暖心建议 & 小练习</view>
+      <view class="section-title">暖心建议 & 小练习</view>
       <view class="advice-main">{{resultData.advice}}</view>
       <view class="tips-list">
         <view class="tip-item" wx:for="{{resultData.tips}}" wx:key="index">{{item}}</view>
       </view>
-      <view class="book-tip">📚 推荐阅读：{{resultData.book}}</view>
+      <view class="book-tip">推荐阅读：{{resultData.book}}</view>
     </view>
 
     <!-- 心理支持 -->
     <view class="hotline-section">
-      <view class="hotline-title">📞 心理支持资源</view>
+      <view class="hotline-title">心理支持资源</view>
       <view class="hotline-item">全国心理援助热线：400-161-9995</view>
       <view class="hotline-item">简单心理平台（预约专业咨询师）</view>
     </view>
