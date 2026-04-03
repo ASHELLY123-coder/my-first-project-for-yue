@@ -4,14 +4,11 @@ Page({
   data: {
     typeKey: '',
     result: null,
-    anxietyNorm: 0,
-    avoidanceNorm: 0,
     anxietyScore: 0,
     avoidanceScore: 0,
     typeColor: '#F5A3A3',
-    supportChannels: supportChannels,
-    chartData: null,
-    quadrantInfo: null
+    supportChannels: [],
+    pieData: []
   },
 
   onLoad(options) {
@@ -24,18 +21,24 @@ Page({
     }
 
     const result = results[typeKey] || results.secure
-    const anxietyNorm = saved.anxietyNorm || 50
-    const avoidanceNorm = saved.avoidanceNorm || 50
+    const anxietyScore = saved.anxiousScore || saved.scores?.anxious || 0
+    const avoidanceScore = saved.avoidantScore || saved.scores?.avoidant || 0
+
+    // 饼图数据：焦虑和回避占比
+    const total = anxietyScore + avoidanceScore || 1
+    const pieData = [
+      { name: '焦虑倾向', value: anxietyScore, color: '#E67E22' },
+      { name: '回避倾向', value: avoidanceScore, color: '#3498DB' }
+    ]
 
     this.setData({
       typeKey,
       result,
-      anxietyNorm,
-      avoidanceNorm,
-      anxietyScore: saved.anxiousScore || 0,
-      avoidanceScore: saved.avoidantScore || 0,
+      anxietyScore,
+      avoidanceScore,
       typeColor: result.color,
-      chartData: { x: avoidanceNorm, y: anxietyNorm }
+      supportChannels,
+      pieData
     })
   },
 
@@ -49,14 +52,5 @@ Page({
 
   goHome() {
     wx.switchTab({ url: '/pages/index/index' })
-  },
-
-  callHotline(e) {
-    const phone = e.currentTarget.dataset.phone
-    if (phone) {
-      wx.makePhoneCall({ phoneNumber: phone })
-    } else {
-      wx.showToast({ title: '请搜索：' + e.currentTarget.dataset.name, icon: 'none' })
-    }
   }
 })

@@ -4,19 +4,12 @@
   <view class="progress-section">
     <view class="progress-info">
       <text class="progress-text">第 {{currentIndex + 1}} / 24 题</text>
-      <text class="progress-tip">焦虑维度</text>
+      <text class="progress-tip" wx:if="{{currentIndex < 12}}">焦虑维度</text>
+      <text class="progress-tip avoidant" wx:else>回避维度</text>
     </view>
     <view class="progress-bar">
       <view class="progress-fill" style="width: {{progressPercent}}%"></view>
     </view>
-  </view>
-
-  <!-- 维度标签 -->
-  <view class="dimension-tag" wx:if="{{currentIndex < 12}}">
-    <text>第一部分：焦虑依恋维度</text>
-  </view>
-  <view class="dimension-tag avoidant" wx:else>
-    <text>第二部分：回避依恋维度</text>
   </view>
 
   <!-- 题目内容 -->
@@ -34,15 +27,16 @@
       bindtap="selectOption"
       data-score="{{option.score}}"
     >
-      <view class="option-label">{{item.label}}</view>
+      <view class="option-label {{selectedOption === option.score ? 'active' : ''}}">{{item.label}}</view>
       <view class="option-text">{{item.text}}</view>
+      <view class="option-check" wx:if="{{selectedOption === option.score}}">✓</view>
     </view>
   </view>
 
   <!-- 导航按钮 -->
   <view class="nav-section">
     <button class="nav-btn prev-btn" bindtap="prevQuestion" wx:if="{{currentIndex > 0}}">上一题</button>
-    <button class="nav-btn {{answers[currentIndex] !== undefined ? 'next-btn' : 'next-btn disabled'}}" bindtap="nextQuestion">
+    <button class="nav-btn next-btn" bindtap="nextQuestion">
       {{currentIndex === 23 ? '查看结果' : '下一题'}}
     </button>
   </view>

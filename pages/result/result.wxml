@@ -10,72 +10,31 @@
     <view class="type-subtitle">{{result.subtitle}}</view>
   </view>
 
-  <!-- 二维坐标图 -->
+  <!-- 饼状图 -->
   <view class="card chart-card">
-    <view class="card-title">二维坐标图</view>
-    <view class="chart-container">
-      <!-- 坐标系背景 -->
-      <view class="chart-bg">
-        <!-- 四象限标签 -->
-        <view class="quadrant-label top-left" style="color: #2ECC71;">安全型</view>
-        <view class="quadrant-label top-right" style="color: #E74C3C;">恐惧型</view>
-        <view class="quadrant-label bottom-left" style="color: #2ECC71; opacity: 0.6;">安全型</view>
-        <view class="quadrant-label bottom-right" style="color: #3498DB;">独立型</view>
-        
-        <!-- 象限分割线 -->
-        <view class="axis-line horizontal" style="top: 50%;"></view>
-        <view class="axis-line vertical" style="left: 50%;"></view>
-        
-        <!-- 坐标轴标签 -->
-        <view class="axis-label left-label">焦虑↑</view>
-        <view class="axis-label bottom-label">→ 回避</view>
-        
-        <!-- 用户位置点 -->
-        <view class="user-dot" style="left: {{chartData.x}}%; top: {{100 - chartData.y}}%;">
-          <view class="dot-inner"></view>
-          <view class="dot-pulse"></view>
+    <view class="card-title">得分占比</view>
+    <view class="pie-container">
+      <!-- 简单CSS饼图 -->
+      <view class="pie-chart" style="background: conic-gradient(#E67E22 0% {{anxietyScore / (anxietyScore + avoidanceScore) * 100}}%, #3498DB {{anxietyScore / (anxietyScore + avoidanceScore) * 100}}% 100%);">
+        <view class="pie-center">
+          <text class="pie-total">{{anxietyScore + avoidanceScore}}</text>
+          <text class="pie-label">总分</text>
         </view>
       </view>
       <!-- 图例 -->
-      <view class="chart-legend">
-        <view class="legend-item">
-          <view class="legend-dot" style="background: #2ECC71;"></view>
-          <text>低焦虑 + 低回避 = 安全型</text>
-        </view>
+      <view class="pie-legend">
         <view class="legend-item">
           <view class="legend-dot" style="background: #E67E22;"></view>
-          <text>高焦虑 + 低回避 = 渴望型</text>
+          <text>焦虑 {{anxietyScore}}分</text>
         </view>
         <view class="legend-item">
           <view class="legend-dot" style="background: #3498DB;"></view>
-          <text>低焦虑 + 高回避 = 独立型</text>
+          <text>回避 {{avoidanceScore}}分</text>
         </view>
-        <view class="legend-item">
-          <view class="legend-dot" style="background: #E74C3C;"></view>
-          <text>高焦虑 + 高回避 = 恐惧型</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 分数展示 -->
-  <view class="card score-card">
-    <view class="card-title">详细分数</view>
-    <view class="score-row">
-      <view class="score-item">
-        <view class="score-label">焦虑得分</view>
-        <view class="score-value" style="color: #E67E22;">{{anxietyScore}}</view>
-        <view class="score-max">/ 48</view>
-      </view>
-      <view class="score-divider"></view>
-      <view class="score-item">
-        <view class="score-label">回避得分</view>
-        <view class="score-value" style="color: #3498DB;">{{avoidanceScore}}</view>
-        <view class="score-max">/ 48</view>
       </view>
     </view>
     <view class="score-note">
-      <text>阈值说明：得分 > 30 为高倾向，≤ 30 为低倾向</text>
+      <text>阈值说明：单项得分 > 30 为高倾向</text>
     </view>
   </view>
 
@@ -96,12 +55,10 @@
   <!-- 暖心建议 -->
   <view class="card">
     <view class="card-title">暖心建议</view>
-    <view class="advice-item">
-      <text class="advice-text">{{result.advice}}</text>
-    </view>
+    <view class="advice-text">{{result.advice}}</view>
   </view>
 
-  <!-- 行动提示 -->
+  <!-- 小练习 -->
   <view class="card">
     <view class="card-title">一些小练习</view>
     <view class="tip-item" wx:for="{{result.tips}}" wx:key="index">
@@ -110,10 +67,10 @@
     </view>
   </view>
 
-  <!-- 伦理声明 & 隐私 -->
+  <!-- 伦理声明 -->
   <view class="card ethics-card">
     <view class="ethics-title">⚠️ 免责声明</view>
-    <view class="ethics-text">本测评仅用于自我认知探索，不构成临床诊断或专业建议。依恋倾向是关系模式的一种，无优劣之分。如感到持续痛苦或需要深度帮助，请咨询专业心理咨询师。</view>
+    <view class="ethics-text">本测评仅用于自我认知探索，不构成临床诊断或专业建议。如感到持续痛苦或需要深度帮助，请咨询专业心理咨询师。</view>
     <view class="ethics-title" style="margin-top: 24rpx;">🔒 隐私说明</view>
     <view class="ethics-text">您的测试结果仅保存在本地设备中，不会上传至服务器。</view>
   </view>
@@ -122,16 +79,9 @@
   <view class="card support-card">
     <view class="card-title">📞 心理支持渠道</view>
     <view class="support-item" wx:for="{{supportChannels}}" wx:key="name">
-      <view class="support-info">
-        <text class="support-name">{{item.name}}</text>
-        <text class="support-desc">{{item.desc}}</text>
-      </view>
-      <view class="support-action" wx:if="{{item.phone}}" bindtap="callHotline" data-phone="{{item.phone}}">
-        <text>拨打</text>
-      </view>
-      <view class="support-action" wx:else bindtap="callHotline" data-name="{{item.name}}" data-phone="">
-        <text>搜索</text>
-      </view>
+      <text class="support-name">{{item.name}}</text>
+      <text class="support-phone" wx:if="{{item.phone}}">{{item.phone}}</text>
+      <text class="support-desc" wx:if="{{item.desc}}">{{item.desc}}</text>
     </view>
   </view>
 

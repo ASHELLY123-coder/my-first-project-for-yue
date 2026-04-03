@@ -1,14 +1,14 @@
 const { questions } = require('../../utils/questions')
 const { scoring } = require('../../utils/scoring')
 
-// 指导语
-const instruction = "亲密关系中的"安全感"与"失控感"、"独立"与"疏离"往往只有一线之隔。请根据你大多数时候的感受作答，而不是最近一次特殊事件。\n\n每道题请根据第一反应选择，无需过度思考。"
+const instruction = '请根据你大多数时候的感受作答，没有对错之分。'
 
 Page({
   data: {
     totalQuestions: 24,
     currentIndex: 0,
     currentQuestion: null,
+    questions: [],
     answers: {},
     progress: 0,
     progressPercent: 0,
@@ -29,7 +29,7 @@ Page({
   selectOption(e) {
     const score = parseInt(e.currentTarget.dataset.score)
     const idx = this.data.currentIndex
-    const answers = { ...this.data.answers }
+    const answers = Object.assign({}, this.data.answers)
     answers[idx] = score
     this.setData({ answers: answers, selectedOption: score })
   },
@@ -67,7 +67,6 @@ Page({
   },
 
   submitTest() {
-    // 构建答案对象 {题号: 分数}
     const answersObj = {}
     for (let i = 0; i < 24; i++) {
       answersObj[i + 1] = this.data.answers[i] || 0
