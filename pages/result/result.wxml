@@ -7,10 +7,27 @@
   </view>
 
   <view class="result-body">
+    <!-- 核心总结 -->
+    <view class="core-section">
+      <view class="core-tag">核心总结</view>
+      <view class="core-text">{{resultData.coreSummary}}</view>
+    </view>
+
+    <!-- 你是怎样的 -->
+    <view class="desc-section">
+      <view class="section-title">📝 你是怎样的</view>
+      <view class="desc-text">{{resultData.description}}</view>
+    </view>
+
+    <!-- 内心独白 -->
+    <view class="monologue-section">
+      <view class="monologue-label">内心独白</view>
+      <view class="monologue-text">“{{resultData.innerMonologue}}”</view>
+    </view>
+
     <!-- 分数条 -->
     <view class="score-section">
       <view class="score-title">📊 测评结果</view>
-
       <view class="score-item">
         <view class="score-label">
           <text class="score-name">焦虑倾向</text>
@@ -21,7 +38,6 @@
         </view>
         <view class="score-level">等级：{{anxietyLevel}}</view>
       </view>
-
       <view class="score-item">
         <view class="score-label">
           <text class="score-name">回避倾向</text>
@@ -34,41 +50,12 @@
       </view>
     </view>
 
-    <!-- 饼图区域 -->
-    <view class="pie-section">
-      <view class="pie-title">焦虑 vs 回避 分布</view>
-      <view class="pie-container">
-        <view class="pie-chart">
-          <view class="pie-anxiety" style="background: #E67E22"></view>
-          <view class="pie-avoidance" style="background: #3498DB"></view>
-        </view>
-        <view class="pie-legend">
-          <view class="legend-item">
-            <view class="legend-dot" style="background: #E67E22"></view>
-            <text class="legend-text">焦虑倾向</text>
-            <text class="legend-value">{{anxiousScore}}分</text>
-          </view>
-          <view class="legend-item">
-            <view class="legend-dot" style="background: #3498DB"></view>
-            <text class="legend-text">回避倾向</text>
-            <text class="legend-value">{{avoidantScore}}分</text>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <!-- 特征描述 -->
-    <view class="desc-section">
-      <view class="section-title">📝 你是怎样的</view>
-      <view class="desc-text">{{resultData.description}}</view>
-    </view>
-
     <!-- 暖心建议 -->
     <view class="advice-section">
-      <view class="section-title">💡 暖心建议</view>
+      <view class="section-title">💡 暖心建议 & 小练习</view>
       <view class="advice-main">{{resultData.advice}}</view>
       <view class="tips-list">
-        <view class="tip-item" wx:for="{{resultData.tips}}" wx:key="index">· {{item}}</view>
+        <view class="tip-item" wx:for="{{resultData.tips}}" wx:key="index">{{item}}</view>
       </view>
       <view class="book-tip">📚 推荐阅读：{{resultData.book}}</view>
     </view>
@@ -78,6 +65,19 @@
       <view class="hotline-title">📞 心理支持资源</view>
       <view class="hotline-item">全国心理援助热线：400-161-9995</view>
       <view class="hotline-item">简单心理平台（预约专业咨询师）</view>
+    </view>
+
+    <!-- 详细分数（折叠） -->
+    <view class="detail-section" bindtap="toggleDetail">
+      <view class="detail-header">
+        <text class="detail-title">详细分数（仅供自我参考）</text>
+        <text class="detail-toggle">{{showDetail ? '收起' : '展开'}}</text>
+      </view>
+      <view class="detail-content" wx:if="{{showDetail}}">
+        <view class="detail-item">焦虑倾向：{{anxietyLevel}}（{{anxiousScore}}/48）</view>
+        <view class="detail-item">回避倾向：{{avoidanceLevel}}（{{avoidantScore}}/48）</view>
+        <view class="detail-note">*分数范围12-48，分数越高倾向越明显。结果基于你大多数时候的感受，可能随情境变化。*</view>
+      </view>
     </view>
 
     <!-- 隐私说明 -->

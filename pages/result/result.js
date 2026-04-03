@@ -6,8 +6,7 @@ Page({
     resultData: null,
     anxietyBarWidth: 0,
     avoidanceBarWidth: 0,
-    anxietyColor: '#E67E22',
-    avoidanceColor: '#3498DB'
+    showDetail: false
   },
 
   onLoad(options) {
@@ -28,6 +27,10 @@ Page({
       anxietyLevel: saved.anxietyLevel,
       avoidanceLevel: saved.avoidanceLevel
     })
+  },
+
+  toggleDetail() {
+    this.setData({ showDetail: !this.data.showDetail })
   },
 
   onShareAppMessage() {
