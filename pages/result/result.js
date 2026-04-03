@@ -7,8 +7,7 @@ Page({
     anxietyScore: 0,
     avoidanceScore: 0,
     typeColor: '#F5A3A3',
-    supportChannels: [],
-    pieData: []
+    supportChannels: []
   },
 
   onLoad(options) {
@@ -21,15 +20,8 @@ Page({
     }
 
     const result = results[typeKey] || results.secure
-    const anxietyScore = saved.anxiousScore || saved.scores?.anxious || 0
-    const avoidanceScore = saved.avoidantScore || saved.scores?.avoidant || 0
-
-    // 饼图数据：焦虑和回避占比
-    const total = anxietyScore + avoidanceScore || 1
-    const pieData = [
-      { name: '焦虑倾向', value: anxietyScore, color: '#E67E22' },
-      { name: '回避倾向', value: avoidanceScore, color: '#3498DB' }
-    ]
+    const anxietyScore = saved.scores?.anxious || 0
+    const avoidanceScore = saved.scores?.avoidant || 0
 
     this.setData({
       typeKey,
@@ -37,8 +29,7 @@ Page({
       anxietyScore,
       avoidanceScore,
       typeColor: result.color,
-      supportChannels,
-      pieData
+      supportChannels
     })
   },
 
