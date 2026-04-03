@@ -13,22 +13,9 @@
     <!-- 测评说明卡片 -->
     <view class="intro-card">
       <view class="intro-title">测评说明</view>
-      <view class="intro-text">本测评共 24 道题，分为两个维度：</view>
-      <view class="dimension-box">
-        <view class="dim-item anxiety">
-          <text class="dim-emoji">😰</text>
-          <text class="dim-name">焦虑维度</text>
-          <text class="dim-count">12 题</text>
-        </view>
-        <view class="dim-sep"></view>
-        <view class="dim-item avoidance">
-          <text class="dim-emoji">😐</text>
-          <text class="dim-name">回避维度</text>
-          <text class="dim-count">12 题</text>
-        </view>
-      </view>
+      <view class="intro-text">本测评共 24 道题，约需 5 分钟完成。</view>
       <view class="intro-tip">
-        <text>💡 请根据你大多数时候的感受作答</text>
+        <text>💡 请根据你大多数时候的感受作答，没有对错之分</text>
       </view>
     </view>
 
@@ -51,7 +38,7 @@
     <!-- 警示说明 -->
     <view class="warning-card">
       <view class="warning-title">⚠️ 重要提示</view>
-      <view class="warning-text">本测评采用轻度迫选设计（没有中间选项），可能会放大你的倾向，请结合自我感受综合判断。</view>
+      <view class="warning-text">本测评采用轻度迫选设计，可能会放大你的倾向，请结合自我感受综合判断。</view>
       <view class="warning-text" style="margin-top: 12rpx;">结果仅供自我觉察参考，不构成临床诊断。</view>
     </view>
 
