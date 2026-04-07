@@ -7,12 +7,6 @@
   </view>
 
   <view class="result-body">
-    <!-- 核心总结 -->
-    <view class="core-section">
-      <view class="core-tag">核心总结</view>
-      <view class="core-text">{{resultData.coreSummary}}</view>
-    </view>
-
     <!-- 详细分数（折叠） -->
     <view class="detail-section" bindtap="toggleDetail">
       <view class="detail-header">
@@ -24,6 +18,12 @@
         <view class="detail-item">回避倾向：{{avoidanceLevel}}（{{avoidantScore}}/48）</view>
         <view class="detail-note">*分数范围12-48，分数越高倾向越明显。结果基于你大多数时候的感受，可能随情境变化。*</view>
       </view>
+    </view>
+
+    <!-- 核心总结 -->
+    <view class="core-section">
+      <view class="core-tag">核心总结</view>
+      <view class="core-text">{{resultData.coreSummary}}</view>
     </view>
 
     <!-- 你是怎样的 -->
