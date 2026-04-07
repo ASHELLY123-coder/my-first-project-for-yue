@@ -13,6 +13,19 @@
       <view class="core-text">{{resultData.coreSummary}}</view>
     </view>
 
+    <!-- 详细分数（折叠） -->
+    <view class="detail-section" bindtap="toggleDetail">
+      <view class="detail-header">
+        <text class="detail-title">详细分数（仅供自我参考）</text>
+        <text class="detail-toggle">{{showDetail ? '收起' : '展开'}}</text>
+      </view>
+      <view class="detail-content" wx:if="{{showDetail}}">
+        <view class="detail-item">焦虑倾向：{{anxietyLevel}}（{{anxiousScore}}/48）</view>
+        <view class="detail-item">回避倾向：{{avoidanceLevel}}（{{avoidantScore}}/48）</view>
+        <view class="detail-note">*分数范围12-48，分数越高倾向越明显。结果基于你大多数时候的感受，可能随情境变化。*</view>
+      </view>
+    </view>
+
     <!-- 你是怎样的 -->
     <view class="desc-section">
       <view class="section-title">你是怎样的</view>
@@ -34,19 +47,6 @@
       <view class="hotline-title">心理支持资源</view>
       <view class="hotline-item">全国心理援助热线：400-161-9995</view>
       <view class="hotline-item">简单心理平台（预约专业咨询师）</view>
-    </view>
-
-    <!-- 详细分数（折叠） -->
-    <view class="detail-section" bindtap="toggleDetail">
-      <view class="detail-header">
-        <text class="detail-title">详细分数（仅供自我参考）</text>
-        <text class="detail-toggle">{{showDetail ? '收起' : '展开'}}</text>
-      </view>
-      <view class="detail-content" wx:if="{{showDetail}}">
-        <view class="detail-item">焦虑倾向：{{anxietyLevel}}（{{anxiousScore}}/48）</view>
-        <view class="detail-item">回避倾向：{{avoidanceLevel}}（{{avoidantScore}}/48）</view>
-        <view class="detail-note">*分数范围12-48，分数越高倾向越明显。结果基于你大多数时候的感受，可能随情境变化。*</view>
-      </view>
     </view>
 
     <!-- 隐私说明 -->
