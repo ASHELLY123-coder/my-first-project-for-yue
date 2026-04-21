@@ -40,6 +40,15 @@ Page({
     }
   },
 
+  // 分享到朋友圈
+  onShareTimeline() {
+    return {
+      title: '我的依恋类型是' + this.data.resultData.typeName + '！',
+      query: '',
+      imageUrl: ''
+    }
+  },
+
   goHome() {
     wx.redirectTo({ url: '/pages/index/index' })
   }

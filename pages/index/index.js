@@ -10,5 +10,12 @@ Page({
       title: '测测你的依恋风格 | 亲密关系探索',
       path: '/pages/index/index'
     }
+  },
+
+  onShareTimeline() {
+    return {
+      title: '测测你的依恋风格 | 亲密关系探索',
+      query: ''
+    }
   }
 })
